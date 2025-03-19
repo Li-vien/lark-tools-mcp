@@ -1,0 +1,42 @@
+{
+  "name": "feishu-tools-mcp",
+  "version": "0.0.1",
+  "description": "飞书mcp工具集",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+   
+    "start": "node src/index.js",
+    "dev": "cross-env NODE_ENV=development tsx watch src/index.js",
+    "inspect": "pnpx @modelcontextprotocol/inspector"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Li-vien/feishu-tools-mcp.git"
+  },
+  "keywords": [
+    "feishu",
+    "mcp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "axios": "^1.7.9",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "remeda": "^2.20.1",
+    "yargs": "^17.7.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.0"
+  }
+}
