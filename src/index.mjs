@@ -1,6 +1,6 @@
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { BaseMcpServer } from "./server";
-import { getServerConfig } from "./config";
+import { BaseMcpServer } from "./server.mjs";
+import { getServerConfig } from "./config.mjs";
 
 export async function startServer() {
   // Check if we're running in stdio mode (e.g., via CLI)
@@ -20,7 +20,7 @@ export async function startServer() {
 }
 
 // If this file is being run directly, start the server
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   startServer().catch((error) => {
     console.error("Failed to start server:", error);
     process.exit(1);

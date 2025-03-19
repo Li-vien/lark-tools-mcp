@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { FeishuService } from "./services/feishu";
+import { FeishuService } from "./services/feishu.mjs";
 import express from "express";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 
@@ -15,7 +15,7 @@ export class BaseMcpServer {
   sseTransport = null;
 
   constructor(feishuApiKey) {
-    this.feishuService = new FeishuService(feishuApiKey);
+    this.feishuService = new FeishuService("feishu", feishuApiKey);
     this.server = new McpServer(
       {
         name: "feishu MCP Server",

@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { maskApiKey } from "./common";
+import { maskApiKey } from "./common.mjs";
 
 // Load environment variables from .env file
 config();

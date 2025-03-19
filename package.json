@@ -8,9 +8,8 @@
     "README.md"
   ],
   "scripts": {
-   
-    "start": "node src/index.js",
-    "dev": "cross-env NODE_ENV=development tsx watch src/index.js",
+    "start": "node src/index.mjs",
+    "dev": "cross-env NODE_ENV=development tsx watch src/index.mjs",
     "inspect": "pnpx @modelcontextprotocol/inspector"
   },
   "engines": {
