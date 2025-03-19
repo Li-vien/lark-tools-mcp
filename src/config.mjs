@@ -10,13 +10,13 @@ export function getServerConfig(isStdioMode) {
   // Parse command line arguments
   const argv = yargs(hideBin(process.argv))
     .options({
-      "feishu-api-id": {
+      "feishu-app-id": {
         type: "string",
-        description: "Feishu API ID",
+        description: "Feishu App ID",
       },
-      "feishu-api-secret": {
+      "feishu-app-secret": {
         type: "string",
-        description: "Feishu API Secret",
+        description: "Feishu App Secret",
       },
       "port": {
         type: "number",
@@ -27,32 +27,32 @@ export function getServerConfig(isStdioMode) {
     .parseSync();
 
   const config = {
-    feishuApiId: "",
-    feishuApiSecret: "",
+    feishuAppId: "",
+    feishuAppSecret: "",
     port: 3334,
     configSources: {
-      feishuApiId: "env",
-      feishuApiSecret: "env",
+      feishuAppId: "env",
+      feishuAppSecret: "env",
       port: "default",
     },
   };
 
   // Handle FEISHU_APP_ID
-  if (argv["feishu-api-id"]) {
-    config.feishuApiId = argv["feishu-api-id"];
-    config.configSources.feishuApiId = "cli";
-  } else if (process.env.FEISHU_API_ID) {
-    config.feishuApiId = process.env.FEISHU_API_ID;
-    config.configSources.feishuApiId = "env";
+  if (argv["feishu-app-id"]) {
+    config.feishuAppId = argv["feishu-app-id"];
+    config.configSources.feishuAppId = "cli";
+  } else if (process.env.FEISHU_APP_ID) {
+    config.feishuAppId = process.env.FEISHU_APP_ID;
+    config.configSources.feishuAppId = "env";
   }
 
   // Handle FEISHU_API_ID
-  if (argv["feishu-api-secret"]) {
-    config.feishuApiSecret = argv["feishu-api-secret"];
-    config.configSources.feishuApiSecret = "cli";
-  } else if (process.env.FEISHU_API_SECRET) {
-    config.feishuApiSecret = process.env.FEISHU_API_SECRET;
-    config.configSources.feishuApiSecret = "env"; 
+  if (argv["feishu-app-secret"]) {
+    config.feishuAppSecret = argv["feishu-app-secret"];
+    config.configSources.feishuAppSecret = "cli";
+  } else if (process.env.FEISHU_APP_SECRET) {
+    config.feishuAppSecret = process.env.FEISHU_APP_SECRET;
+    config.configSources.feishuAppSecret = "env"; 
   }
 
   // Handle PORT
@@ -65,8 +65,8 @@ export function getServerConfig(isStdioMode) {
   }
 
   // Validate feishu configuration
-  if (!config.feishuApiId || !config.feishuApiSecret) {
-    console.error("FEISHU_API_ID and FEISHU_API_SECRET are required (via CLI argument --feishu-api-id and --feishu-api-secret or .env file)");
+  if (!config.feishuAppId || !config.feishuAppSecret) {
+    console.error("FEISHU_APP_ID and FEISHU_APP_SECRET are required (via CLI argument --feishu-app-id and --feishu-app-secret or .env file)");
     process.exit(1);
   }
 
@@ -74,10 +74,10 @@ export function getServerConfig(isStdioMode) {
   if (!isStdioMode) {
     console.log("\nConfiguration:");
     console.log(
-      `- FEISHU_APP_ID: ${maskApiKey(config.feishuApiId)} (source: ${config.configSources.feishuApiId})`,
+      `- FEISHU_APP_ID: ${maskApiKey(config.feishuAppId)} (source: ${config.configSources.feishuAppId})`,
     );
     console.log(
-      `- FEISHU_APP_SECRET: ${maskApiKey(config.feishuApiSecret)} (source: ${config.configSources.feishuApiSecret})`,
+      `- FEISHU_APP_SECRET: ${maskApiKey(config.feishuAppSecret)} (source: ${config.configSources.feishuAppSecret})`,
     );
     console.log(`- PORT: ${config.port} (source: ${config.configSources.port})`);
     console.log();
