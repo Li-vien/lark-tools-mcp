@@ -37,25 +37,25 @@ export class BaseMcpServer {
      // Tool to get doc information
      this.server.tool(
       "get_feishu_doc",
-      "When the docId cannot be obtained, obtain the layout information about the entire feishu file",
+      "Retrieve the content of Feishu document based on documentId",
       {
-        documentId: z
+        docId: z
           .string()
           .describe(
-            "The ID of the feishu file to fetch, often found in a provided URL like figma.com/(file|design)/<fileKey>/...",
+            "The documentId of the feishu file to fetch, often found in a provided URL like feishu.cn/wiki/<documentId>...",
           ),
       },
-      async ({ documentId }) => {
+      async ({ docId }) => {
         try {
           Logger.log(
-            `Reading feishu doc ${documentId}`,
+            `Reading feishu doc ${docId}`,
           );
-          const doc = await this.feishuService.getDoc(documentId);
+          const doc = await this.feishuService.getDoc(docId);
           return {
             content: [{ type: "text", text: doc }],
           };
         } catch (error) {
-          Logger.error(`Error fetching file ${documentId}:`, error);
+          Logger.error(`Error fetching file ${docId}:`, error);
           return {
             content: [{ type: "text", text: `Error fetching doc: ${error}` }],
           };
