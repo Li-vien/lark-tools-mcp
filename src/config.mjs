@@ -10,34 +10,49 @@ export function getServerConfig(isStdioMode) {
   // Parse command line arguments
   const argv = yargs(hideBin(process.argv))
     .options({
-      "feishu-api-key": {
+      "feishu-api-id": {
         type: "string",
-        description: "Feishu API key",
+        description: "Feishu API ID",
       },
-      port: {
+      "feishu-api-secret": {
+        type: "string",
+        description: "Feishu API Secret",
+      },
+      "port": {
         type: "number",
         description: "Port to run the server on",
       },
-    })
+    })  
     .help()
     .parseSync();
 
   const config = {
-    feishuApiKey: "",
+    feishuApiId: "",
+    feishuApiSecret: "",
     port: 3334,
     configSources: {
-      feishuApiKey: "env",
+      feishuApiId: "env",
+      feishuApiSecret: "env",
       port: "default",
     },
   };
 
-  // Handle FEISHU_API_KEY
-  if (argv["feishu-api-key"]) {
-    config.feishuApiKey = argv["feishu-api-key"];
-    config.configSources.figmaApiKey = "cli";
-  } else if (process.env.FEISHU_API_KEY) {
-    config.feishuApiKey = process.env.FEISHU_API_KEY;
-    config.configSources.feishuApiKey = "env";
+  // Handle FEISHU_APP_ID
+  if (argv["feishu-api-id"]) {
+    config.feishuApiId = argv["feishu-api-id"];
+    config.configSources.feishuApiId = "cli";
+  } else if (process.env.FEISHU_API_ID) {
+    config.feishuApiId = process.env.FEISHU_API_ID;
+    config.configSources.feishuApiId = "env";
+  }
+
+  // Handle FEISHU_API_ID
+  if (argv["feishu-api-secret"]) {
+    config.feishuApiSecret = argv["feishu-api-secret"];
+    config.configSources.feishuApiSecret = "cli";
+  } else if (process.env.FEISHU_API_SECRET) {
+    config.feishuApiSecret = process.env.FEISHU_API_SECRET;
+    config.configSources.feishuApiSecret = "env"; 
   }
 
   // Handle PORT
@@ -50,8 +65,8 @@ export function getServerConfig(isStdioMode) {
   }
 
   // Validate feishu configuration
-  if (!config.feishuApiKey) {
-    console.error("FEISHU_API_KEY is required (via CLI argument --feishu-api-key or .env file)");
+  if (!config.feishuApiId || !config.feishuApiSecret) {
+    console.error("FEISHU_API_ID and FEISHU_API_SECRET are required (via CLI argument --feishu-api-id and --feishu-api-secret or .env file)");
     process.exit(1);
   }
 
@@ -59,11 +74,28 @@ export function getServerConfig(isStdioMode) {
   if (!isStdioMode) {
     console.log("\nConfiguration:");
     console.log(
-      `- FEISHU_API_KEY: ${maskApiKey(config.feishuApiKey)} (source: ${config.configSources.figmaApiKey})`,
+      `- FEISHU_APP_ID: ${maskApiKey(config.feishuApiId)} (source: ${config.configSources.feishuApiId})`,
+    );
+    console.log(
+      `- FEISHU_APP_SECRET: ${maskApiKey(config.feishuApiSecret)} (source: ${config.configSources.feishuApiSecret})`,
     );
     console.log(`- PORT: ${config.port} (source: ${config.configSources.port})`);
     console.log();
   }
 
   return config;
+}
+
+export const GlobalConfig =  {
+  BASE_URL: {
+      feishu: {
+        url: "https://open.feishu.cn/open-apis/",
+        headers: {
+          key: "Authorization",
+          value: (token) => {
+            return `Bearer ${token}`;
+          },
+        },
+      },
+  }
 }

@@ -14,8 +14,9 @@ export class BaseMcpServer {
   feishuService;
   sseTransport = null;
 
-  constructor(feishuApiKey) {
-    this.feishuService = new FeishuService("feishu", feishuApiKey);
+  constructor(config = {}) {
+    const { feishuApiId, feishuApiSecret } = config;
+    this.feishuService = new FeishuService("feishu", feishuApiId, feishuApiSecret);
     this.server = new McpServer(
       {
         name: "feishu MCP Server",
@@ -38,23 +39,23 @@ export class BaseMcpServer {
       "get_feishu_doc",
       "When the docId cannot be obtained, obtain the layout information about the entire feishu file",
       {
-        docId: z
+        documentId: z
           .string()
           .describe(
             "The ID of the feishu file to fetch, often found in a provided URL like figma.com/(file|design)/<fileKey>/...",
           ),
       },
-      async ({ docId }) => {
+      async ({ documentId }) => {
         try {
           Logger.log(
-            `Reading feishu doc ${docId}`,
+            `Reading feishu doc ${documentId}`,
           );
-          const doc = await this.feishuService.getDoc(docId);
+          const doc = await this.feishuService.getDoc(documentId);
           return {
-            content: [{ type: "text", text: JSON.stringify(doc, null, 2) }],
+            content: [{ type: "text", text: doc }],
           };
         } catch (error) {
-          Logger.error(`Error fetching file ${docId}:`, error);
+          Logger.error(`Error fetching file ${documentId}:`, error);
           return {
             content: [{ type: "text", text: `Error fetching doc: ${error}` }],
           };

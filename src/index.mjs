@@ -8,13 +8,13 @@ export async function startServer() {
 
   const config = getServerConfig(isStdioMode);
 
-  const server = new BaseMcpServer(config.feishuApiKey);
+  const server = new BaseMcpServer(config);
 
   if (isStdioMode) {
     const transport = new StdioServerTransport();
     await server.connect(transport);
   } else {
-    console.log(`Initializing Figma MCP Server in HTTP mode on port ${config.port}...`);
+    console.log(`Initializing Feishu MCP Server in HTTP mode on port ${config.port}...`);
     await server.startHttpServer(config.port);
   }
 }
