@@ -8,8 +8,7 @@
     "README.md"
   ],
   "scripts": {
-    "start": "node src/index.mjs",
-    "dev": "cross-env NODE_ENV=development tsx watch src/index.mjs",
+    "start": "nodemon src/index.mjs",
     "inspect": "pnpx @modelcontextprotocol/inspector"
   },
   "engines": {
@@ -26,11 +25,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.44.0",
     "@modelcontextprotocol/sdk": "^1.6.1",
-    "axios": "^1.7.9",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "nodemon": "^3.1.9",
     "remeda": "^2.20.1",
     "yargs": "^17.7.2",
     "zod": "^3.24.2"

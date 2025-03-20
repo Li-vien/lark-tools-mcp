@@ -15,8 +15,8 @@ export class BaseMcpServer {
   sseTransport = null;
 
   constructor(config = {}) {
-    const { feishuApiId, feishuApiSecret } = config;
-    this.feishuService = new FeishuService("feishu", feishuApiId, feishuApiSecret);
+    const { feishuAppId, feishuAppSecret } = config;
+    this.feishuService = new FeishuService(feishuAppId, feishuAppSecret);
     this.server = new McpServer(
       {
         name: "feishu MCP Server",
@@ -36,7 +36,7 @@ export class BaseMcpServer {
   registerTools() {
      // Tool to get doc information
      this.server.tool(
-      "get_feishu_doc",
+      "get_feishu_doc_raw",
       "Retrieve the content of Feishu document based on documentId",
       {
         docId: z
@@ -50,7 +50,7 @@ export class BaseMcpServer {
           Logger.log(
             `Reading feishu doc ${docId}`,
           );
-          const doc = await this.feishuService.getDoc(docId);
+          const doc = await this.feishuService.getNode(docId);
           return {
             content: [{ type: "text", text: doc }],
           };

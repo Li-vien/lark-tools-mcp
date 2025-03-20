@@ -7,7 +7,6 @@ export async function startServer() {
   const isStdioMode = process.env.NODE_ENV === "cli" || process.argv.includes("--stdio");
 
   const config = getServerConfig(isStdioMode);
-
   const server = new BaseMcpServer(config);
 
   if (isStdioMode) {

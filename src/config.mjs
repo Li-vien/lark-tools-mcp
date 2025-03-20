@@ -85,17 +85,3 @@ export function getServerConfig(isStdioMode) {
 
   return config;
 }
-
-export const GlobalConfig =  {
-  BASE_URL: {
-      feishu: {
-        url: "https://open.feishu.cn/open-apis/",
-        headers: {
-          key: "Authorization",
-          value: (token) => {
-            return `Bearer ${token}`;
-          },
-        },
-      },
-  }
-}
