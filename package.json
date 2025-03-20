@@ -1,5 +1,5 @@
 {
-  "name": "feishu-mcp",
+  "name": "lark-tools-mcp",
   "version": "0.0.1",
   "description": "飞书mcp工具集",
   "main": "dist/index.js",
@@ -19,7 +19,8 @@
     "url": "git+https://github.com/Li-vien/feishu-tools-mcp.git"
   },
   "keywords": [
-    "feishu",
+    "Lark",
+    "lark-tools",
     "mcp"
   ],
   "author": "",

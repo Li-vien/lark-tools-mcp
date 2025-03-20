@@ -1,4 +1,4 @@
-# feishu-mcp
+# lark-tools-mcp
 MCP server provides Feishu related operations to AI encoding agents such as cursor    
 飞书MCP插件  
 通过打通飞书与cursor，向LLM提供读取文档、发送消息、合同审批、数据处理.....  
