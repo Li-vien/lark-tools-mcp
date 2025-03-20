@@ -5,8 +5,8 @@ MCP server provides Feishu related operations to AI encoding agents such as curs
 可能会有意想不到的组合方式，积极共创~~~
 
 ## 创建自建应用
-MCP服务运行基于token，需要创建一个应用并做发布 (https://open.feishu.cn/document/server-docs/api-call-guide/terminology)[https://open.feishu.cn/document/server-docs/api-call-guide/terminology]
-然后对应用进行文档授权，这一步较为繁琐，参考文档，选择合适的方案：(https://open.feishu.cn/document/uAjLw4CM/ugTN1YjL4UTN24CO1UjN/trouble-shooting/how-to-add-permissions-to-app)[https://open.feishu.cn/document/uAjLw4CM/ugTN1YjL4UTN24CO1UjN/trouble-shooting/how-to-add-permissions-to-app]
+MCP服务运行基于token，需要创建一个应用并做发布 [https://open.feishu.cn/document/server-docs/api-call-guide/terminolog](https://open.feishu.cn/document/server-docs/api-call-guide/terminology)
+然后对应用进行文档授权，这一步较为繁琐，参考文档，选择合适的方案：[https://open.feishu.cn/document/uAjLw4CM/ugTN1YjL4UTN24CO1UjN/trouble-shooting/how-to-add-permissions-to-app](https://open.feishu.cn/document/uAjLw4CM/ugTN1YjL4UTN24CO1UjN/trouble-shooting/how-to-add-permissions-to-app)
 
 ## 运行服务
 1. 拷贝 .env.example 为 .env 文件 
