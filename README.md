@@ -20,7 +20,7 @@ MCP服务运行基于token，需要创建一个应用并做发布 [https://open.
 6. Agent 模式下，输入飞书文档链接，让AI帮你阅读与整理内容  
 
 ## 效果
-![](docs/image/preview.jpg)
+![](docs/image/preview.png)
 
 ## tools 
 ### get_feishu_doc 
