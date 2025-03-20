@@ -1,5 +1,5 @@
 {
-  "name": "feishu-tools-mcp",
+  "name": "feishu-mcp",
   "version": "0.0.1",
   "description": "飞书mcp工具集",
   "main": "dist/index.js",
