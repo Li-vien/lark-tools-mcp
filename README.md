@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/mseep-audited.png)](https://mseep.ai/app/li-vien-lark-tools-mcp)
+
 # lark-tools-mcp
 MCP server provides Feishu related operations to AI encoding agents such as cursor    
 飞书MCP插件  
