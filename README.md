@@ -1,4 +1,5 @@
 # lark-tools-mcp
+[![smithery badge](https://smithery.ai/badge/@Li-vien/lark-tools-mcp)](https://smithery.ai/server/@Li-vien/lark-tools-mcp)
 MCP server provides Feishu related operations to AI encoding agents such as cursor    
 飞书MCP插件  
 通过打通飞书与cursor，向LLM提供读取文档、发送消息、合同审批、数据处理.....  
